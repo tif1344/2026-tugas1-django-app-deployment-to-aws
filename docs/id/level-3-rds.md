@@ -61,7 +61,7 @@ Memakai security group sebagai source berarti "instance mana pun yang memiliki `
   - **Initial database name: `pcm`**. Tanpa ini, RDS tidak membuat database-nya.
   - Backup retention: 1 hari · Deletion protection: nonaktif (agar mudah dihapus nanti)
 
-Pembuatan memakan waktu sekitar 10 menit. Setelah status *Available*, salin **Endpoint**-nya, mis. `pcm-<kelompok>-db.xxxxxxxx.us-east-1.rds.amazonaws.com`.
+Pembuatan memakan waktu sekitar 10 menit. Setelah status *Available*, salin **Endpoint**-nya, mis. `pcm-<kelompok>-db.xxxxxxxx.ap-southeast-3.rds.amazonaws.com`.
 ## Langkah 4 — Uji koneksi dari EC2
 
 ```bash

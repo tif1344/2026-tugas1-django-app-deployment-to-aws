@@ -16,7 +16,7 @@
                           └── media/    (unggahan admin)
 ```
 
-Django tetap membuat halaman HTML, tetapi setiap `src="..."` dan `href="..."` untuk file kini mengarah ke `https://pcm-<kelompok>-assets.s3.<region>.amazonaws.com/...`. Browser mengunduh file-file itu langsung dari S3.
+Django tetap membuat halaman HTML, tetapi setiap `src="..."` dan `href="..."` untuk file kini mengarah ke `https://pcm-<kelompok>-assets.s3.ap-southeast-3.amazonaws.com/...`. Browser mengunduh file-file itu langsung dari S3.
 
 ---
 
@@ -48,6 +48,8 @@ Di laporan, jelaskan apa yang diizinkan setiap statement dalam policy, dan menga
 
 ```bash
 sudo snap install aws-cli --classic
+echo "export AWS_DEFAULT_REGION=ap-southeast-3" >> ~/.bashrc   # Jakarta region opt-in; CLI harus diberi tahu region-nya
+source ~/.bashrc
 aws sts get-caller-identity        # "Arn" harus memuat assumed-role/<nama role Anda>
 aws s3 ls s3://pcm-<kelompok>-assets    # tidak error (output kosong tidak masalah)
 ```
@@ -76,7 +78,7 @@ Pertahankan `SECRET_KEY`, `ALLOWED_HOSTS`, dan `CSRF_TRUSTED_ORIGINS` Anda. Ubah
 ```ini
 USE_S3=true
 AWS_STORAGE_BUCKET_NAME=pcm-<kelompok>-assets
-AWS_S3_REGION_NAME=<region Anda, mis. us-east-1>
+AWS_S3_REGION_NAME=ap-southeast-3
 ```
 
 Unggah file statis ke S3, lalu restart:
@@ -94,7 +96,7 @@ Tidak ada file Python yang diubah. [`app/pcm/settings.py`](../../app/pcm/setting
 2. Di beranda, klik kanan → *View page source*. Stylesheet dan gambar kini dimuat dari `...s3....amazonaws.com`.
 3. Di admin, unggah gambar baru (mis. *Berita* baru). Gambar tampil di website, dan di konsol S3 pada `media/posts/<tahun>/<bulan>/`. Pastikan tidak ada file baru di `/srv/pcm-website/app/media/`.
 4. Halaman admin tetap bergaya, karena CSS-nya juga berasal dari S3.
-5. Buka URL akar bucket, misalnya `https://pcm-<kelompok>-assets.s3.<region>.amazonaws.com/`, di browser. Hasilnya harus **AccessDenied**, karena melihat daftar isi bucket tidak diizinkan. File satuan di `static/` dan `media/` harus bisa dibuka.
+5. Buka URL akar bucket, misalnya `https://pcm-<kelompok>-assets.s3.ap-southeast-3.amazonaws.com/`, di browser. Hasilnya harus **AccessDenied**, karena melihat daftar isi bucket tidak diizinkan. File satuan di `static/` dan `media/` harus bisa dibuka.
 
 ## Bukti (untuk laporan)
 

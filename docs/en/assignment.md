@@ -1,6 +1,6 @@
 # Assignment 1 — Deploying a Django Website to AWS
 
-**Course:** Cloud Computing (TIF1344X) · **Year:** 2 · **Type:** group
+**Course:** Cloud Computing (TIF1344X) · **Year:** 2 · **Type:** group (2–5 members)
 
 > 🇮🇩 Versi Bahasa Indonesia: [../id/assignment.md](../id/assignment.md)
 
@@ -55,13 +55,13 @@ Each group uses **one AWS account** (Free Tier / free plan), owned by one member
 
 - The account owner turns on **MFA for the root user** and then stops using root for daily work.
 - The owner creates an **IAM user with console access for each member**, including themselves. Members never share the root login.
-- Pick one region (e.g. `ap-southeast-1`, Singapore) and create every resource in it. The examples in the guides use `us-east-1`; replace it with your region.
+- Create every resource in the **Asia Pacific (Jakarta)** region, `ap-southeast-3`. Jakarta is an *opt-in* region: before creating anything, the account owner enables it under *Account → AWS Regions → Asia Pacific (Jakarta) → Enable*. It takes a few minutes. Before each step, check that the region selector at the top right of the console shows **Jakarta**.
 
 > ⚠️ **Costs.** Even free-tier accounts are charged for some things: public IPv4 addresses (including Elastic IPs, about USD 0.005/hour each), RDS beyond the free allowance, and anything you forget to delete. Set up an **AWS Budget** alert (e.g. USD 5) before you start. Never create a NAT Gateway for this assignment: it is not needed and costs about USD 32/month. Delete everything after grading ([cleanup](troubleshooting.md#cleanup)).
 
 ## Naming rule (mandatory)
 
-Every resource name must include your **group name**, so your work can be told apart from other groups'. Write the group name in lowercase letters, digits and hyphens only, with no spaces, because S3 bucket names allow nothing else (e.g. `kelompok-03`). Wherever the guides say `<group>`, use this name.
+Every resource name must include your **group name**, so your work can be told apart from other groups'. Group names are `kelompok-a`, `kelompok-b`, `kelompok-c`, and so on. Always write it in lowercase with a hyphen, because S3 bucket names allow nothing else. Wherever the guides say `<group>`, use this name; for example, group A's bucket is `pcm-kelompok-a-assets`.
 
 | Resource | Name |
 |---|---|
@@ -75,7 +75,7 @@ Also, after deploying, log in to the Django admin and change the **tagline** in 
 
 ## Deliverables
 
-Submit through [LMS — filled in by lecturer] before **[deadline — filled in by lecturer]**:
+Submit through Google Classroom before **week 7, 26 October 2026**:
 
 1. **Report (PDF)** with:
    - on the cover: group name, and each member's name and NIM,
@@ -89,7 +89,7 @@ Submit through [LMS — filled in by lecturer] before **[deadline — filled in 
    - the live website and its `/status/` page,
    - the AWS console for each resource,
    - one image upload through the admin and where that file ends up.
-3. **Public URL** of your site: `http://<Elastic IP>/`. Keep it running until **[grading date — filled in by lecturer]**.
+3. **Public URL** of your site: `http://<Elastic IP>/`. Keep it running until **week 7, 26 October 2026**.
 
 Never include passwords, secret keys or AWS access keys in your report or video. Blur them if they appear on screen.
 

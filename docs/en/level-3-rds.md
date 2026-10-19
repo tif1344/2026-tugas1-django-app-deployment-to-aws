@@ -61,7 +61,7 @@ Using a security group as the source means "any instance that has `web-sg`". If 
   - **Initial database name: `pcm`**. Without it, RDS does not create the database.
   - Backup retention: 1 day · Deletion protection: off (makes cleanup easier)
 
-Creation takes about 10 minutes. When the status is *Available*, copy the **Endpoint**, e.g. `pcm-<group>-db.xxxxxxxx.us-east-1.rds.amazonaws.com`.
+Creation takes about 10 minutes. When the status is *Available*, copy the **Endpoint**, e.g. `pcm-<group>-db.xxxxxxxx.ap-southeast-3.rds.amazonaws.com`.
 ## Step 4 — Test the connection from EC2
 
 ```bash

@@ -36,8 +36,8 @@ Do this by hand in the **VPC console**, one component at a time, so you understa
 
    | Name | AZ | CIDR |
    |---|---|---|
-   | `pcm-<group>-public-a` | first AZ (e.g. `us-east-1a`) | `10.0.1.0/24` |
-   | `pcm-<group>-public-b` | second AZ (e.g. `us-east-1b`) | `10.0.2.0/24` |
+   | `pcm-<group>-public-a` | first AZ (e.g. `ap-southeast-3a`) | `10.0.1.0/24` |
+   | `pcm-<group>-public-b` | second AZ (e.g. `ap-southeast-3b`) | `10.0.2.0/24` |
    | `pcm-<group>-private-a` | first AZ | `10.0.11.0/24` |
    | `pcm-<group>-private-b` | second AZ | `10.0.12.0/24` |
 
@@ -67,7 +67,7 @@ Do not open port 8000 or anything else. Gunicorn listens on `127.0.0.1` only and
 
 - Name: `pcm-<group>-web`
 - AMI: **Ubuntu Server 24.04 LTS** (64-bit x86)
-- Instance type: `t3.micro` (or `t2.micro`)
+- Instance type: `t3.micro`
 - Key pair: create `pcm-<group>-key` (.pem) and keep the file safe. Share it only with your group members.
 - Network settings → *Edit*:
   - VPC `pcm-<group>-vpc`, subnet `pcm-<group>-public-a`, **Auto-assign public IP: Enable**
@@ -104,7 +104,7 @@ The app lives in `/srv/pcm-website`, not your home folder, because Nginx (user `
 ```bash
 sudo mkdir -p /srv/pcm-website
 sudo chown ubuntu:ubuntu /srv/pcm-website
-git clone <STARTER_REPO_URL> /srv/pcm-website
+git clone https://github.com/tif1344/2026-tugas1-django-app-deployment-to-aws.git /srv/pcm-website
 cd /srv/pcm-website/app
 
 uv sync --frozen                      # creates .venv and installs dependencies

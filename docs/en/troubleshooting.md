@@ -28,6 +28,8 @@ After **any** change to `.env`, run `sudo systemctl restart pcm`.
 | Uploaded images 404 (Level 1) | Nginx cannot read `/srv/...`, or the media path is wrong | Check `ls -l /srv/pcm-website/app/media`; the app must be in `/srv`, not `/home/ubuntu` |
 | **413 Request Entity Too Large** | Upload bigger than Nginx allows | `client_max_body_size` in `pcm.conf` (10M by default) |
 | `uv: command not found` | Shell not reloaded after installing uv | `source ~/.local/bin/env` or log out and back in |
+| Jakarta missing from the region list, or `OptInRequired` / "not enabled" errors | The Jakarta region has not been enabled for the account | Account owner: *Account → AWS Regions → Asia Pacific (Jakarta) → Enable*, wait a few minutes, then pick **Jakarta** in the region selector |
+| Resources "disappeared" from the console | Region selector switched away from Jakarta | Pick **Asia Pacific (Jakarta)** in the region selector at the top right |
 
 ## Level 2
 

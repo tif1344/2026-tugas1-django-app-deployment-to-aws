@@ -16,7 +16,7 @@
                           └── media/    (admin uploads)
 ```
 
-Django still renders the pages, but every `src="..."` and `href="..."` for files now points to `https://pcm-<group>-assets.s3.<region>.amazonaws.com/...`. The browser downloads those files directly from S3.
+Django still renders the pages, but every `src="..."` and `href="..."` for files now points to `https://pcm-<group>-assets.s3.ap-southeast-3.amazonaws.com/...`. The browser downloads those files directly from S3.
 
 ---
 
@@ -48,6 +48,8 @@ In your report, explain what each statement in the policy allows, and why the ro
 
 ```bash
 sudo snap install aws-cli --classic
+echo "export AWS_DEFAULT_REGION=ap-southeast-3" >> ~/.bashrc   # Jakarta is opt-in; the CLI must be told the region
+source ~/.bashrc
 aws sts get-caller-identity        # "Arn" should contain assumed-role/<your role name>
 aws s3 ls s3://pcm-<group>-assets    # no error (empty output is fine)
 ```
@@ -76,7 +78,7 @@ Keep your `SECRET_KEY`, `ALLOWED_HOSTS` and `CSRF_TRUSTED_ORIGINS`. Change or ad
 ```ini
 USE_S3=true
 AWS_STORAGE_BUCKET_NAME=pcm-<group>-assets
-AWS_S3_REGION_NAME=<your region, e.g. us-east-1>
+AWS_S3_REGION_NAME=ap-southeast-3
 ```
 
 Upload the static files to S3, then restart:
@@ -94,7 +96,7 @@ No Python file was edited. [`app/pcm/settings.py`](../../app/pcm/settings.py) re
 2. On the home page, right-click → *View page source*. The stylesheet and images now load from `...s3....amazonaws.com`.
 3. In the admin, upload a new image (e.g. a new *Berita*). It appears on the site, and in the S3 console under `media/posts/<year>/<month>/`. Check that no new file appeared in `/srv/pcm-website/app/media/`.
 4. The admin pages are still styled, because their CSS also comes from S3.
-5. Open an S3 URL such as `https://pcm-<group>-assets.s3.<region>.amazonaws.com/` (the bucket root) in a browser. It should return **AccessDenied**, because listing is not allowed. Individual files under `static/` and `media/` should open.
+5. Open an S3 URL such as `https://pcm-<group>-assets.s3.ap-southeast-3.amazonaws.com/` (the bucket root) in a browser. It should return **AccessDenied**, because listing is not allowed. Individual files under `static/` and `media/` should open.
 
 ## Evidence (for the report)
 

@@ -36,8 +36,8 @@ Kerjakan secara manual di **konsol VPC**, satu komponen demi satu komponen, agar
 
    | Nama | AZ | CIDR |
    |---|---|---|
-   | `pcm-<kelompok>-public-a` | AZ pertama (mis. `us-east-1a`) | `10.0.1.0/24` |
-   | `pcm-<kelompok>-public-b` | AZ kedua (mis. `us-east-1b`) | `10.0.2.0/24` |
+   | `pcm-<kelompok>-public-a` | AZ pertama (mis. `ap-southeast-3a`) | `10.0.1.0/24` |
+   | `pcm-<kelompok>-public-b` | AZ kedua (mis. `ap-southeast-3b`) | `10.0.2.0/24` |
    | `pcm-<kelompok>-private-a` | AZ pertama | `10.0.11.0/24` |
    | `pcm-<kelompok>-private-b` | AZ kedua | `10.0.12.0/24` |
 
@@ -67,7 +67,7 @@ Jangan buka port 8000 atau port lain. Gunicorn hanya mendengarkan di `127.0.0.1`
 
 - Nama: `pcm-<kelompok>-web`
 - AMI: **Ubuntu Server 24.04 LTS** (64-bit x86)
-- Instance type: `t3.micro` (atau `t2.micro`)
+- Instance type: `t3.micro`
 - Key pair: buat `pcm-<kelompok>-key` (.pem) dan simpan file-nya baik-baik. Bagikan hanya kepada anggota kelompok Anda.
 - Network settings → *Edit*:
   - VPC `pcm-<kelompok>-vpc`, subnet `pcm-<kelompok>-public-a`, **Auto-assign public IP: Enable**
@@ -104,7 +104,7 @@ Aplikasi diletakkan di `/srv/pcm-website`, bukan di folder home, karena Nginx (u
 ```bash
 sudo mkdir -p /srv/pcm-website
 sudo chown ubuntu:ubuntu /srv/pcm-website
-git clone <STARTER_REPO_URL> /srv/pcm-website
+git clone https://github.com/tif1344/2026-tugas1-django-app-deployment-to-aws.git /srv/pcm-website
 cd /srv/pcm-website/app
 
 uv sync --frozen                      # membuat .venv dan menginstal dependensi

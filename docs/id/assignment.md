@@ -1,6 +1,6 @@
 # Tugas 1 — Deploy Website Django ke AWS
 
-**Mata kuliah:** Cloud Computing (TIF1344X) · **Semester:** tahun ke-2 · **Jenis:** kelompok
+**Mata kuliah:** Cloud Computing (TIF1344X) · **Semester:** tahun ke-2 · **Jenis:** kelompok (2–5 orang)
 
 > 🇬🇧 English version: [../en/assignment.md](../en/assignment.md)
 
@@ -55,13 +55,13 @@ Setiap kelompok memakai **satu akun AWS** (Free Tier / *free plan*) milik salah 
 
 - Pemilik akun mengaktifkan **MFA untuk root user**, lalu tidak lagi memakai root untuk pekerjaan sehari-hari.
 - Pemilik akun membuat **IAM user dengan akses konsol untuk setiap anggota**, termasuk dirinya sendiri. Anggota tidak boleh berbagi login root.
-- Pilih satu region (mis. `ap-southeast-1`, Singapura) dan buat semua resource di region itu. Contoh di panduan memakai `us-east-1`; ganti dengan region Anda.
+- Buat semua resource di region **Asia Pacific (Jakarta)**, `ap-southeast-3`. Jakarta adalah region *opt-in*: sebelum membuat apa pun, pemilik akun mengaktifkannya di *Account → AWS Regions → Asia Pacific (Jakarta) → Enable*. Prosesnya beberapa menit. Sebelum setiap langkah, pastikan pemilih region di kanan atas konsol menampilkan **Jakarta**.
 
 > ⚠️ **Biaya.** Akun free tier pun tetap ditagih untuk beberapa hal: alamat IPv4 publik (termasuk Elastic IP, sekitar USD 0,005/jam per alamat), RDS di luar kuota gratis, dan resource yang lupa dihapus. Pasang **AWS Budget** alert (mis. USD 5) sebelum mulai. Jangan pernah membuat NAT Gateway untuk tugas ini: tidak diperlukan dan biayanya sekitar USD 32/bulan. Hapus semua resource setelah penilaian ([cleanup](troubleshooting.md#cleanup)).
 
 ## Aturan penamaan (wajib)
 
-Setiap nama resource harus memuat **nama kelompok**, agar pekerjaan Anda bisa dibedakan dari kelompok lain. Tulis nama kelompok hanya dengan huruf kecil, angka, dan tanda hubung, tanpa spasi, karena nama bucket S3 tidak mengizinkan karakter lain (mis. `kelompok-03`). Di mana pun panduan menulis `<kelompok>`, pakai nama ini.
+Setiap nama resource harus memuat **nama kelompok**, agar pekerjaan Anda bisa dibedakan dari kelompok lain. Nama kelompok adalah `kelompok-a`, `kelompok-b`, `kelompok-c`, dan seterusnya. Selalu tulis dengan huruf kecil dan tanda hubung, karena nama bucket S3 tidak mengizinkan karakter lain. Di mana pun panduan menulis `<kelompok>`, pakai nama ini; misalnya, bucket kelompok A adalah `pcm-kelompok-a-assets`.
 
 | Resource | Nama |
 |---|---|
@@ -75,7 +75,7 @@ Selain itu, setelah deploy, login ke admin Django dan ubah **tagline** di *Profi
 
 ## Yang dikumpulkan
 
-Kumpulkan melalui [LMS — diisi dosen] sebelum **[tenggat — diisi dosen]**:
+Kumpulkan melalui Google Classroom sebelum **pekan ke-7, 26 Oktober 2026**:
 
 1. **Laporan (PDF)**, berisi:
    - di sampul: nama kelompok, serta nama dan NIM setiap anggota,
@@ -89,7 +89,7 @@ Kumpulkan melalui [LMS — diisi dosen] sebelum **[tenggat — diisi dosen]**:
    - website yang sudah online beserta halaman `/status/`,
    - konsol AWS untuk setiap resource,
    - satu kali unggah gambar lewat admin dan di mana file itu tersimpan.
-3. **URL publik** website Anda: `http://<Elastic IP>/`. Biarkan tetap menyala sampai **[tanggal penilaian — diisi dosen]**.
+3. **URL publik** website Anda: `http://<Elastic IP>/`. Biarkan tetap menyala sampai **pekan ke-7, 26 Oktober 2026**.
 
 Jangan pernah menampilkan password, secret key, atau AWS access key di laporan maupun video. Samarkan (*blur*) jika terlanjur muncul di layar.
 

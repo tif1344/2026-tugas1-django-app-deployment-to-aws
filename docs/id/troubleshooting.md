@@ -28,6 +28,8 @@ Setiap kali `.env` diubah, jalankan `sudo systemctl restart pcm`.
 | Gambar unggahan 404 (Level 1) | Nginx tidak bisa membaca `/srv/...`, atau path media salah | Cek `ls -l /srv/pcm-website/app/media`; aplikasi harus di `/srv`, bukan di `/home/ubuntu` |
 | **413 Request Entity Too Large** | Ukuran unggahan melebihi batas Nginx | `client_max_body_size` di `pcm.conf` (bawaan 10M) |
 | `uv: command not found` | Shell belum dimuat ulang setelah instal uv | `source ~/.local/bin/env` atau logout lalu login lagi |
+| Jakarta tidak ada di daftar region, atau muncul error `OptInRequired` / "not enabled" | Region Jakarta belum diaktifkan untuk akun ini | Pemilik akun: *Account → AWS Regions → Asia Pacific (Jakarta) → Enable*, tunggu beberapa menit, lalu pilih **Jakarta** di pemilih region |
+| Resource "hilang" dari konsol | Pemilih region berpindah dari Jakarta | Pilih **Asia Pacific (Jakarta)** di pemilih region kanan atas |
 
 ## Level 2
 
