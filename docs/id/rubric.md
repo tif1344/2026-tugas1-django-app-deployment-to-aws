@@ -40,7 +40,6 @@ Level dinilai secara berurutan. Sebuah level hanya dihitung jika level sebelumny
 | CloudFront di depan bucket S3 (`AWS_S3_CUSTOM_DOMAIN`), dengan bucket tidak lagi publik (Origin Access Control) | +4 |
 | Port 22 ditutup; server dikelola lewat SSM Session Manager atau EC2 Instance Connect Endpoint | +3 |
 | S3 Gateway VPC Endpoint, dengan bukti lalu lintas S3 melewatinya | +2 |
-| Seluruh infrastruktur ditulis sebagai kode (CloudFormation atau Terraform), dilampirkan di laporan | +4 |
 | CloudWatch alarm (CPU EC2 atau free storage RDS) dengan notifikasi email | +2 |
 
 ## Pengurangan nilai

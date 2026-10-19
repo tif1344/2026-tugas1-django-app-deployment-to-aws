@@ -40,7 +40,6 @@ Levels are graded in order. A level only counts when the previous one fully work
 | CloudFront in front of the S3 bucket (`AWS_S3_CUSTOM_DOMAIN`), with the bucket no longer public (Origin Access Control) | +4 |
 | Port 22 closed; administer the server with SSM Session Manager or EC2 Instance Connect Endpoint | +3 |
 | S3 Gateway VPC Endpoint, with evidence that S3 traffic uses it | +2 |
-| Entire infrastructure written as code (CloudFormation or Terraform), included in the report | +4 |
 | CloudWatch alarm (EC2 CPU or RDS free storage) with email notification | +2 |
 
 ## Deductions
