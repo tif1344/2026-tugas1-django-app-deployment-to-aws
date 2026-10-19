@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}Beranda{% endblock %}
+{% block content %}
+<section class="hero"{% if site_profile.hero_image %} style="background-image: linear-gradient(rgba(0,61,36,.72), rgba(0,61,36,.72)), url('{{ site_profile.hero_image.url }}')"{% endif %}>
+  <div class="container">
+    <p class="eyebrow">Assalamu'alaikum warahmatullahi wabarakatuh</p>
+    <h1>{{ site_profile.name|default:"Pimpinan Cabang Muhammadiyah" }}</h1>
+    {% if site_profile.about %}<p class="lead">{{ site_profile.about|truncatewords:40 }}</p>{% endif %}
+    <div class="hero-actions">
+      <a class="button" href="{% url 'website:profile' %}">Kenali kami</a>
+      <a class="button button-ghost" href="{% url 'website:contact' %}">Hubungi kami</a>
+    </div>
+  </div>
+</section>
+
+<section class="container stats">
+  <div><strong>{{ branch_count }}</strong><span>Ranting</span></div>
+  <div><strong>{{ institution_count }}</strong><span>Amal Usaha</span></div>
+  <div><strong>{{ leader_count }}</strong><span>Pimpinan</span></div>
+</section>
+
+<section class="container section">
+  <div class="section-head">
+    <h2>Berita terbaru</h2>
+    <a href="{% url 'website:post_list' %}">Semua berita →</a>
+  </div>
+  <div class="grid grid-3">
+    {% for post in latest_posts %}
+      {% include "website/_post_card.html" %}
+    {% empty %}
+      <p class="muted">Belum ada berita.</p>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="container section">
+  <div class="section-head">
+    <h2>Agenda mendatang</h2>
+    <a href="{% url 'website:events' %}">Semua agenda →</a>
+  </div>
+  {% include "website/_event_list.html" with events=upcoming_events %}
+</section>
+{% endblock %}

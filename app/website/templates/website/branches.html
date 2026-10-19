@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Ranting{% endblock %}
+{% block content %}
+<section class="page-head"><div class="container"><h1>Pimpinan Ranting</h1></div></section>
+<div class="container section">
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Ranting</th><th>Ketua</th><th>Alamat</th><th>Telepon</th></tr></thead>
+      <tbody>
+        {% for branch in branches %}
+          <tr><td>{{ branch.name }}</td><td>{{ branch.chair }}</td><td>{{ branch.address }}</td><td>{{ branch.phone }}</td></tr>
+        {% empty %}
+          <tr><td colspan="4" class="muted">Data ranting belum tersedia.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Status server{% endblock %}
+{% block content %}
+<section class="page-head"><div class="container"><h1>Status server</h1></div></section>
+<div class="container section">
+  <p class="level-badge">
+    {% if info.level %}Level {{ info.level }} terdeteksi{% else %}Konfigurasi di luar level tugas{% endif %}
+  </p>
+
+  <div class="table-wrap">
+    <table class="status-table">
+      <tbody>
+        <tr><th colspan="2">Server</th></tr>
+        <tr><td>Hostname</td><td><code>{{ info.hostname }}</code></td></tr>
+        {% if info.ec2 %}
+          <tr><td>EC2 instance ID</td><td><code>{{ info.ec2.instance_id }}</code></td></tr>
+          <tr><td>Tipe instance</td><td><code>{{ info.ec2.instance_type }}</code></td></tr>
+          <tr><td>Availability Zone</td><td><code>{{ info.ec2.availability_zone }}</code></td></tr>
+        {% else %}
+          <tr><td>EC2</td><td>Tidak berjalan di EC2 (metadata tidak tersedia)</td></tr>
+        {% endif %}
+        <tr><td>DEBUG</td><td><code>{{ info.debug }}</code>{% if info.debug %} ⚠ matikan di server publik{% endif %}</td></tr>
+
+        <tr><th colspan="2">File statis &amp; media</th></tr>
+        <tr><td>Storage media</td><td><code>{{ info.storage_backend }}</code></td></tr>
+        <tr><td>S3 bucket</td><td>{% if info.use_s3 %}<code>{{ info.bucket }}</code>{% else %}Tidak digunakan{% endif %}</td></tr>
+        <tr><td>STATIC_URL</td><td><code>{{ info.static_url }}</code></td></tr>
+        <tr><td>MEDIA_URL</td><td><code>{{ info.media_url }}</code></td></tr>
+        <tr><td>Contoh file statis</td><td><a href="{% static 'img/logo.svg' %}"><code>{% static 'img/logo.svg' %}</code></a></td></tr>
+        {% if site_profile.hero_image %}
+          <tr><td>Contoh file media</td><td><a href="{{ site_profile.hero_image.url }}"><code>{{ site_profile.hero_image.url }}</code></a></td></tr>
+        {% endif %}
+
+        <tr><th colspan="2">Database</th></tr>
+        <tr><td>Engine</td><td><code>{{ info.database_vendor }}</code></td></tr>
+        <tr><td>Nama</td><td><code>{{ info.database_name }}</code></td></tr>
+        {% if info.database_host %}
+          <tr><td>Host</td><td><code>{{ info.database_host }}</code>{% if info.uses_rds %} (Amazon RDS){% endif %}</td></tr>
+        {% endif %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Profil{% endblock %}
+{% block content %}
+<section class="page-head"><div class="container"><h1>Profil</h1></div></section>
+<div class="container section prose">
+  {% if site_profile %}
+    <h2>Tentang {{ site_profile.short_name }}</h2>
+    {{ site_profile.about|linebreaks }}
+
+    {% if site_profile.history %}
+      <h2>Sejarah</h2>
+      {{ site_profile.history|linebreaks }}
+    {% endif %}
+
+    {% if site_profile.vision %}
+      <h2>Visi</h2>
+      <blockquote>{{ site_profile.vision }}</blockquote>
+    {% endif %}
+
+    {% if site_profile.mission_items %}
+      <h2>Misi</h2>
+      <ol>{% for item in site_profile.mission_items %}<li>{{ item }}</li>{% endfor %}</ol>
+    {% endif %}
+  {% else %}
+    <p class="muted">Profil organisasi belum diisi. Tambahkan melalui halaman admin.</p>
+  {% endif %}
+</div>
+{% endblock %}

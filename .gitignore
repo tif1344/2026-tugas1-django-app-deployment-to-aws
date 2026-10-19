@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+.venv/
+.env
+app/db.sqlite3
+app/media/
+app/staticfiles/
+app/data.json
+.DS_Store
+
+# Instructor-only notes for Claude Code (not for students)
+CLAUDE.local.md

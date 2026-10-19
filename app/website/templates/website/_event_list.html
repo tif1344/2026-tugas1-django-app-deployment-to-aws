@@ -1,0 +1,17 @@
+<ul class="event-list">
+  {% for event in events %}
+    <li>
+      <div class="event-date">
+        <strong>{{ event.starts_at|date:"j" }}</strong>
+        <span>{{ event.starts_at|date:"M Y" }}</span>
+      </div>
+      <div>
+        <h3>{{ event.title }}</h3>
+        <p class="muted">{{ event.starts_at|date:"l, H:i T" }} &middot; {{ event.location }}</p>
+        {% if event.description %}<p>{{ event.description }}</p>{% endif %}
+      </div>
+    </li>
+  {% empty %}
+    <li class="muted">Belum ada agenda.</li>
+  {% endfor %}
+</ul>

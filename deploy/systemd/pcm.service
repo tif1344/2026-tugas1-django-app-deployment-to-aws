@@ -1,0 +1,27 @@
+# systemd unit that keeps Gunicorn running and starts it on boot.
+# Install:  sudo cp pcm.service /etc/systemd/system/pcm.service
+#           sudo systemctl daemon-reload
+#           sudo systemctl enable --now pcm
+# Logs:     journalctl -u pcm -f
+# After editing .env:  sudo systemctl restart pcm
+
+[Unit]
+Description=PCM website (Gunicorn)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=ubuntu
+Group=www-data
+WorkingDirectory=/srv/pcm-website/app
+# Settings are read from /srv/pcm-website/app/.env by Django itself.
+ExecStart=/srv/pcm-website/app/.venv/bin/gunicorn \
+    --workers 3 \
+    --bind 127.0.0.1:8000 \
+    --access-logfile - \
+    pcm.wsgi:application
+Restart=on-failure
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target

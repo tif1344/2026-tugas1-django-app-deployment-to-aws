@@ -1,0 +1,78 @@
+{% load static %}<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Beranda{% endblock %} · {{ site_profile.short_name|default:"PCM" }}</title>
+  <link rel="icon" href="{% static 'img/logo.svg' %}" type="image/svg+xml">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="{% url 'website:home' %}">
+        {% if site_profile.logo %}
+          <img src="{{ site_profile.logo.url }}" alt="" width="44" height="44">
+        {% else %}
+          <img src="{% static 'img/logo.svg' %}" alt="" width="44" height="44">
+        {% endif %}
+        <span>
+          <strong>{{ site_profile.short_name|default:"PCM" }}</strong>
+          <small>{{ site_profile.tagline|default:"Pimpinan Cabang Muhammadiyah" }}</small>
+        </span>
+      </a>
+      <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Buka menu">
+      <label for="nav-toggle" class="nav-toggle-label" aria-hidden="true"><span></span></label>
+      <nav class="site-nav">
+        {% url 'website:home' as home_url %}
+        <a href="{{ home_url }}" {% if request.path == home_url %}aria-current="page"{% endif %}>Beranda</a>
+        <a href="{% url 'website:profile' %}">Profil</a>
+        <a href="{% url 'website:leaders' %}">Pimpinan</a>
+        <a href="{% url 'website:branches' %}">Ranting</a>
+        <a href="{% url 'website:institutions' %}">Amal Usaha</a>
+        <a href="{% url 'website:post_list' %}">Berita</a>
+        <a href="{% url 'website:events' %}">Agenda</a>
+        <a href="{% url 'website:documents' %}">Unduhan</a>
+        <a href="{% url 'website:contact' %}">Kontak</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    {% if messages %}
+      <div class="container">
+        {% for message in messages %}<p class="alert alert-{{ message.tags }}">{{ message }}</p>{% endfor %}
+      </div>
+    {% endif %}
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <strong>{{ site_profile.name|default:"Pimpinan Cabang Muhammadiyah" }}</strong>
+        {% if site_profile.address %}<p>{{ site_profile.address }}</p>{% endif %}
+        <p>
+          {% if site_profile.phone %}Telp. {{ site_profile.phone }}{% endif %}
+          {% if site_profile.email %} · {{ site_profile.email }}{% endif %}
+        </p>
+      </div>
+      {% if related_links %}
+        <nav class="footer-links" aria-label="Tautan persyarikatan">
+          <strong>Tautan Persyarikatan</strong>
+          <ul>
+            {% for link in related_links %}
+              <li><a href="{{ link.url }}" target="_blank" rel="noopener">{{ link.name }}</a></li>
+            {% endfor %}
+          </ul>
+        </nav>
+      {% endif %}
+      <p class="footer-meta">
+        &copy; {% now "Y" %} {{ site_profile.short_name|default:"PCM" }} ·
+        <a href="{% url 'website:status' %}">Status server</a> ·
+        <a href="{% url 'admin:index' %}">Admin</a>
+      </p>
+    </div>
+  </footer>
+</body>
+</html>

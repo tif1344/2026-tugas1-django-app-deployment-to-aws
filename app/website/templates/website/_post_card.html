@@ -1,0 +1,10 @@
+<article class="card">
+  {% if post.cover_image %}
+    <a href="{{ post.get_absolute_url }}"><img class="card-img" src="{{ post.cover_image.url }}" alt="" loading="lazy"></a>
+  {% endif %}
+  <div class="card-body">
+    <time class="muted" datetime="{{ post.published_at|date:'c' }}">{{ post.published_at|date:"j F Y" }}</time>
+    <h3><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h3>
+    <p>{{ post.excerpt|default:post.body|truncatewords:24 }}</p>
+  </div>
+</article>

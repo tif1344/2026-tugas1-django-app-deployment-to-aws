@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Kontak{% endblock %}
+{% block content %}
+<section class="page-head"><div class="container"><h1>Kontak</h1></div></section>
+<div class="container section contact">
+  <div>
+    <h2>Sekretariat</h2>
+    {% if site_profile %}
+      <p>{{ site_profile.address }}</p>
+      {% if site_profile.phone %}<p>Telp. {{ site_profile.phone }}</p>{% endif %}
+      {% if site_profile.email %}<p>{{ site_profile.email }}</p>{% endif %}
+    {% endif %}
+  </div>
+  <form method="post" class="form" novalidate>
+    {% csrf_token %}
+    <h2>Kirim pesan</h2>
+    {% for field in form %}
+      <div class="field">
+        <label for="{{ field.id_for_label }}">{{ field.label|capfirst }}</label>
+        {{ field }}
+        {% for error in field.errors %}<p class="field-error">{{ error }}</p>{% endfor %}
+      </div>
+    {% endfor %}
+    <button class="button" type="submit">Kirim</button>
+  </form>
+</div>
+{% endblock %}

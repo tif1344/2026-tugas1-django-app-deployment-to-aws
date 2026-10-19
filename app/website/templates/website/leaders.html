@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Pimpinan{% endblock %}
+{% block content %}
+<section class="page-head"><div class="container"><h1>Struktur Pimpinan</h1></div></section>
+<div class="container section">
+  <div class="grid grid-4">
+    {% for leader in leaders %}
+      <article class="card leader">
+        {% if leader.photo %}<img class="leader-photo" src="{{ leader.photo.url }}" alt="Foto {{ leader.name }}" loading="lazy">{% endif %}
+        <div class="card-body">
+          <h3>{{ leader.name }}</h3>
+          <p>{{ leader.position }}</p>
+          {% if leader.period %}<p class="muted">Periode {{ leader.period }}</p>{% endif %}
+        </div>
+      </article>
+    {% empty %}
+      <p class="muted">Data pimpinan belum tersedia.</p>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Unduhan{% endblock %}
+{% block content %}
+<section class="page-head"><div class="container"><h1>Unduhan</h1></div></section>
+<div class="container section">
+  <ul class="doc-list">
+    {% for doc in documents %}
+      <li>
+        <div>
+          <h3>{{ doc.title }}</h3>
+          {% if doc.description %}<p class="muted">{{ doc.description }}</p>{% endif %}
+        </div>
+        <a class="button" href="{{ doc.file.url }}" target="_blank" rel="noopener">Unduh</a>
+      </li>
+    {% empty %}
+      <li class="muted">Belum ada dokumen.</li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}
