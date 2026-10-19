@@ -27,6 +27,8 @@ docs/id, docs/en   Panduan tugas                      · Assignment guides
 
 Website contoh untuk **PCM Kartasura** (Sukoharjo, Jawa Tengah). Data pengurus, ranting, amal usaha, berita, dan agenda adalah **contoh fiktif**. · Sample website for **PCM Kartasura** (Sukoharjo, Central Java). Leaders, branch chairs, institutions, news and events are **fictional sample data**.
 
+Logo Muhammadiyah ([`app/static/img/muhammadiyah.svg`](app/static/img/muhammadiyah.svg)): K. H. Siradj Dahlan, vektor oleh Hibensis, dari [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Muhammadiyah.svg), lisensi [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). Jangan diubah; atribusi wajib tetap ada di footer website. · Muhammadiyah logo: K. H. Siradj Dahlan, vectorised by Hibensis, from Wikimedia Commons, licensed CC BY-SA 4.0. Do not modify it; the attribution in the site footer must stay.
+
 ## Menjalankan di laptop
 
 Butuh [uv](https://docs.astral.sh/uv/getting-started/installation/). Python 3.12 diunduh otomatis oleh uv jika belum ada.

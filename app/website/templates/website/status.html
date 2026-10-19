@@ -27,7 +27,7 @@
         <tr><td>S3 bucket</td><td>{% if info.use_s3 %}<code>{{ info.bucket }}</code>{% else %}Tidak digunakan{% endif %}</td></tr>
         <tr><td>STATIC_URL</td><td><code>{{ info.static_url }}</code></td></tr>
         <tr><td>MEDIA_URL</td><td><code>{{ info.media_url }}</code></td></tr>
-        <tr><td>Contoh file statis</td><td><a href="{% static 'img/logo.svg' %}"><code>{% static 'img/logo.svg' %}</code></a></td></tr>
+        <tr><td>Contoh file statis</td><td><a href="{% static 'img/muhammadiyah.svg' %}"><code>{% static 'img/muhammadiyah.svg' %}</code></a></td></tr>
         {% if site_profile.hero_image %}
           <tr><td>Contoh file media</td><td><a href="{{ site_profile.hero_image.url }}"><code>{{ site_profile.hero_image.url }}</code></a></td></tr>
         {% endif %}

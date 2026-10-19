@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% block title %}Beranda{% endblock %} · {{ site_profile.short_name|default:"PCM" }}</title>
-  <link rel="icon" href="{% static 'img/logo.svg' %}" type="image/svg+xml">
+  <link rel="icon" href="{% static 'img/muhammadiyah.svg' %}" type="image/svg+xml">
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
@@ -12,9 +12,9 @@
     <div class="container header-inner">
       <a class="brand" href="{% url 'website:home' %}">
         {% if site_profile.logo %}
-          <img src="{{ site_profile.logo.url }}" alt="" width="44" height="44">
+          <img class="brand-logo" src="{{ site_profile.logo.url }}" alt="" width="44" height="44">
         {% else %}
-          <img src="{% static 'img/logo.svg' %}" alt="" width="44" height="44">
+          <img class="brand-logo" src="{% static 'img/muhammadiyah.svg' %}" alt="Logo Muhammadiyah" width="44" height="44">
         {% endif %}
         <span>
           <strong>{{ site_profile.short_name|default:"PCM" }}</strong>
@@ -73,6 +73,11 @@
         <a href="{% url 'admin:index' %}">Admin</a>
       </p>
     </div>
+    <p class="container footer-credit">
+      Logo Muhammadiyah: K. H. Siradj Dahlan, vektor oleh Hibensis, via
+      <a href="https://commons.wikimedia.org/wiki/File:Muhammadiyah.svg" target="_blank" rel="noopener">Wikimedia Commons</a>,
+      lisensi <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>.
+    </p>
   </footer>
 </body>
 </html>
